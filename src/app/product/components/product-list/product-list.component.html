@@ -1,0 +1,7 @@
+<div *ngFor="let product of getProducts()">
+  <p><b>Name:</b> {{product.name}}</p>
+  <p><b>Description:</b> {{product.description}}</p>
+  <p><b>Price:</b> {{product.price}}</p>
+  <p><b>Availability:</b> {{product.isAvailable}}</p>
+  <app-product></app-product>
+</div>
