@@ -6,7 +6,7 @@ import { ProductModel } from "../../../product/models/product.model";
   selector: 'app-cart-list',
   templateUrl: './cart-list.component.html',
   styleUrls: ['./cart-list.component.css'],
-  providers: [CartService]
+  // providers: [CartService]
 })
 
 export class CartListComponent {
@@ -19,6 +19,6 @@ export class CartListComponent {
   }
 
   constructor(private cartService: CartService) {
-    this.cartService = cartService;
+    // this.cartService = cartService;
   }
 }
