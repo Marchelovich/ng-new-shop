@@ -5,7 +5,8 @@ import { ProductService } from "../../services/product.service";
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
-  providers: [ProductService]
+  // Сервис уже зарегистрирован
+  // providers: [ProductService]
 })
 
 export class ProductListComponent {
