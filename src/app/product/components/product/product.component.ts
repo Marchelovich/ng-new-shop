@@ -12,7 +12,5 @@ export class ProductComponent {
     console.log("The product has been added");
   }
   constructor(private cartService: CartService) {
-    // если есть модификатор для параметра, то присвоение не нужно
-    // this.cartService = cartService;
   }
 }
