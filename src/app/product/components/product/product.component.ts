@@ -1,16 +1,23 @@
-import { Component } from '@angular/core';
-import { CartService } from '../../../cart/services/cart.service';
+import {Component, EventEmitter, Input, KeyValueDiffer, KeyValueDiffers, Output} from '@angular/core';
+import { type ProductModel } from "../../models/product.model";
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
-  providers: [CartService]
 })
 export class ProductComponent {
+  @Input() product!: ProductModel;
+  @Output() addToCart : EventEmitter<ProductModel> = new EventEmitter<ProductModel>();
+  private differ!: KeyValueDiffer<any, any>;
+
   onAddToCart() {
-    console.log("The product has been added");
+    this.addToCart.emit(this.product);
   }
-  constructor(private cartService: CartService) {
+
+  constructor(private differs: KeyValueDiffers) {}
+
+  ngOnInit(): void {
+    this.differ = this.differs.find(this.product).create();
   }
 }

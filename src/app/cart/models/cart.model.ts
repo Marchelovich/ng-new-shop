@@ -1,16 +1,57 @@
 import {ProductModel} from "../../product/models/product.model";
+import {CartItemModel} from "./cart-item.model";
 
 export class CartModel {
-  private products: Array<ProductModel> = [
-    new ProductModel('Product1', 'Description1', 123),
-    new ProductModel('Product2', 'Description2', 123),
+  private items: Array<CartItemModel> = [
+    new CartItemModel(new ProductModel('Product1', 'Description1', 123)),
+    new CartItemModel(new ProductModel('Product2', 'Description2', 123)),
   ];
 
-  getProducts() {
-    return this.products
+  getItems(): Array<CartItemModel> {
+    return this.items
   }
 
-  addProduct(product: ProductModel) {
-    this.products.push(product);
+  addProduct(product: ProductModel, quantity: number = 1) {
+    const pos = this.items.findIndex((item, index) => {
+      return JSON.stringify(product) === JSON.stringify(item.getProduct());
+    });
+    if (pos >= 0) {
+      this.items[pos].quantity++;
+    } else {
+      this.items.push(new CartItemModel(product, quantity));
+    }
+  }
+
+  getTotalCost(): number {
+    let sum = 0;
+    this.items.forEach((element) => sum += element.getProduct().price * element.quantity);
+
+    return sum;
+  }
+
+  getTotalQuantity(): number {
+    let quantity = 0;
+    this.items.forEach((element) => quantity += element.quantity);
+
+    return quantity;
+  }
+
+  quantityIncrease(item: CartItemModel): void {
+    const pos = this.items.indexOf(item);
+    this.items[pos].quantity++;
+  }
+
+  quantityDecrease(item: CartItemModel): void {
+    const pos = this.items.indexOf(item);
+    if (this.items[pos].quantity === 1) {
+      this.deleteItem(this.items[pos]);
+    } else {
+      this.items[pos].quantity--;
+    }
+  }
+
+  deleteItem(item: CartItemModel): void {
+    const pos = this.items.indexOf(item);
+    this.items.splice(pos, 1);
   }
 }
