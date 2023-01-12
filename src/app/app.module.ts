@@ -11,6 +11,7 @@ import {SharedModule} from "./shared/shared.module";
     AppComponent,
   ],
   imports: [
+    // только тут подключается этот модуль
     BrowserModule,
     AppRoutingModule,
     CartModule,
