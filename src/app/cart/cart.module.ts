@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserModule } from '@angular/platform-browser';
 import { CartListComponent } from './components/cart-list/cart-list.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import {SharedModule} from "../shared/shared.module";
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -10,15 +11,16 @@ import {SharedModule} from "../shared/shared.module";
     CartListComponent,
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
+    // BrowserModule,
     SharedModule
   ],
   exports: [
-    CartItemComponent,
+    // CartItemComponent,
     CartListComponent
   ],
-  providers: [],
-  bootstrap: []
+  // providers: [],
+  // bootstrap: []
 })
 
 export class CartModule { }
