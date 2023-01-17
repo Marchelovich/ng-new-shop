@@ -23,7 +23,7 @@ export class ProductListComponent{
   }
 
   onAddToCart(product: ProductModel): void {
-    this.cartService.getCart().addProduct(product);
+    this.cartService.addProduct(product);
   }
 
   constructor(private productService: ProductService, private cartService: CartService) {

@@ -15,15 +15,15 @@ export class CartListComponent {
   children!: QueryList<ProductComponent>;
 
   getCartItems(): Array<CartItemModel> {
-    return this.cartService.getCart().getItems();
+    return this.cartService.getProducts();
   }
 
   getCartSum(): number {
-    return this.cartService.getCart().getTotalCost();
+    return this.cartService.totalCost;
   }
 
   getCartQuantity(): number {
-    return this.cartService.getCart().getTotalQuantity();
+    return this.cartService.totalQuantity;
   }
 
   trackByCartItem(index: number, item: CartItemModel) {
@@ -34,14 +34,14 @@ export class CartListComponent {
   }
 
   onQuantityIncrease(item: CartItemModel): void {
-    this.cartService.getCart().quantityIncrease(item);
+    this.cartService.quantityIncrease(item);
   }
 
   onQuantityDecrease(item: CartItemModel): void {
-    this.cartService.getCart().quantityDecrease(item);
+    this.cartService.quantityDecrease(item);
   }
 
   onDeleteItem(item: CartItemModel): void {
-    this.cartService.getCart().deleteItem(item)
+    this.cartService.removeProduct(item)
   }
 }

@@ -37,21 +37,27 @@ export class CartModel {
   }
 
   quantityIncrease(item: CartItemModel): void {
-    const pos = this.items.indexOf(item);
-    this.items[pos].quantity++;
+    this.changeQuantity(item, 1);
   }
 
   quantityDecrease(item: CartItemModel): void {
+    this.changeQuantity(item, -1);
+  }
+
+  private changeQuantity(item: CartItemModel, delta: number) {
     const pos = this.items.indexOf(item);
+    this.items[pos].quantity += delta;
     if (this.items[pos].quantity === 1) {
       this.deleteItem(this.items[pos]);
-    } else {
-      this.items[pos].quantity--;
     }
   }
 
   deleteItem(item: CartItemModel): void {
     const pos = this.items.indexOf(item);
     this.items.splice(pos, 1);
+  }
+
+  clearCart(): void {
+    this.items = [];
   }
 }
