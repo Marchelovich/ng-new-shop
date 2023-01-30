@@ -15,7 +15,7 @@ export class ConfigOptionsService {
     this.config = {...this.config, ...config};
   }
 
-  setConfigProperty(key: 'id' | 'login' | 'email', value: string): void {
+  setConfigProperty(key: keyof ConfigModel, value: string): void {
     this.config[key] = value;
   }
 }
