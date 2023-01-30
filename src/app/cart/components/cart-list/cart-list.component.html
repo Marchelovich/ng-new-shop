@@ -1,7 +1,7 @@
 <div class="container">
   <div *ngIf="getCartItems().length; then cartItems else emptyCart"></div>
   <ng-template #cartItems>
-    <app-cart-item class="row gy-5"  *ngFor="let cartItem of getCartItems(); trackBy: trackByCartItem"
+    <app-cart-item class="row gy-5"  *ngFor="let cartItem of getCartItems() | orderByPipe: selectedSorting: isAscending; trackBy: trackByCartItem"
       [item]="cartItem"
       (quantityDecrease)="onQuantityDecrease($event)"
       (quantityIncrease)="onQuantityIncrease($event)"
@@ -9,6 +9,15 @@
     </app-cart-item>
     <p><b>Sum:</b> {{getCartSum()}}</p>
     <p><b>Quantity:</b> {{getCartQuantity()}}</p>
+
+    <div>
+      <select [(ngModel)]="selectedSorting">
+        <option *ngFor="let option of sortOptions | keyvalue" [value]="option.key">{{ option.value }}</option>
+      </select>
+      <br>
+      <input type="checkbox" [(ngModel)]="isAscending"> Ascending
+    </div>
+
   </ng-template>
   <ng-template #emptyCart>
     <p>Cart is empty</p>

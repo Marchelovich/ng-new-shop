@@ -1,8 +1,9 @@
-import { Component,  QueryList,  ViewChildren} from '@angular/core';
+import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import { CartService } from "../../services/cart.service";
 import {CartItemModel} from "../../models/cart-item.model";
 import {CartItemComponent} from "../cart-item/cart-item.component";
 import {ProductComponent} from "../../../product/components/product/product.component";
+import {ProductModel} from "../../../product/models/product.model";
 
 @Component({
   selector: 'app-cart-list',
@@ -13,6 +14,9 @@ import {ProductComponent} from "../../../product/components/product/product.comp
 export class CartListComponent {
   @ViewChildren(CartItemComponent)
   children!: QueryList<ProductComponent>;
+  sortOptions = {price: 'Price', quantity: 'Quantity', brand: 'Name'};
+  isAscending = false;
+  selectedSorting!: keyof ProductModel;
 
   getCartItems(): Array<CartItemModel> {
     return this.cartService.getProducts();
@@ -43,5 +47,9 @@ export class CartListComponent {
 
   onDeleteItem(item: CartItemModel): void {
     this.cartService.removeProduct(item)
+  }
+
+  ngOnInit(): void {
+    console.log(this.isAscending)
   }
 }

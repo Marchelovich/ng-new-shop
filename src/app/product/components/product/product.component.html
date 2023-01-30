@@ -1,5 +1,5 @@
 <p><b>Name:</b> {{product.name}}</p>
 <p><b>Description:</b> {{product.description}}</p>
-<p><b>Price:</b> {{product.price}}</p>
+<p><b>Price:</b> {{product.price | currency: 'EUR'}}</p>
 <p><b>Availability:</b> {{product.isAvailable}}</p>
 <button (click)="onAddToCart()" [disabled]="!product.isAvailable">Buy</button>

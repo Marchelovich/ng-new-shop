@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CartListComponent } from './components/cart-list/cart-list.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
-import {CommonModule} from "@angular/common";
 import {SharedModule} from "../shared/shared.module";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -10,8 +10,8 @@ import {SharedModule} from "../shared/shared.module";
     CartListComponent,
   ],
     imports: [
-        CommonModule,
         SharedModule,
+        FormsModule,
     ],
   exports: [
     CartItemComponent,

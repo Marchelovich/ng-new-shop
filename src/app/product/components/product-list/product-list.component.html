@@ -1,3 +1,3 @@
 <div>
-  <app-product (addToCart)="onAddToCart($event)" [product]="product" *ngFor="let product of getProducts()"></app-product>
+  <app-product (addToCart)="onAddToCart($event)" [product]="product" *ngFor="let product of getProducts() | async"></app-product>
 </div>
